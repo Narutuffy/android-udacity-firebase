@@ -28,7 +28,7 @@ public class SquawkFirebaseMessageService extends FirebaseMessagingService {
     private static final String JSON_KEY_MESSAGE=SquawkContract.COLUMN_MESSAGE;
     private static final String JSON_KEY_DATE=SquawkContract.COLUMN_DATE;
 
-    private static final int NOTFOCATION_MAX_CHARACTERS=30;
+    private static final int NOTIFICATION_MAX_CHARACTERS=30;
     private static String LOG_TAG= SquawkFirebaseMessageService.class.getSimpleName();
 
 
@@ -111,14 +111,14 @@ public class SquawkFirebaseMessageService extends FirebaseMessagingService {
 
         // If the message is longer than the max number of characters we want in our
         // notification, truncate it and add the unicode character for ellipsis
-        if (message.length() > 30) {
-            message = message.substring(0,30) + "\u2026";
+        if (message.length() > NOTIFICATION_MAX_CHARACTERS) {
+            message = message.substring(0,NOTIFICATION_MAX_CHARACTERS) + "\u2026";
         }
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.ic_duck)
-                .setContentTitle(String.format(getString(R.string.notification_message), author))
+                .setContentTitle(String.format(getString(R.string.notification_message),author))
                 .setContentText(message)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)
