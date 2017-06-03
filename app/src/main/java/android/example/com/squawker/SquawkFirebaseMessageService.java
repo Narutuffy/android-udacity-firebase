@@ -70,7 +70,7 @@ public class SquawkFirebaseMessageService extends FirebaseMessagingService {
 
     /**
      * Inserts a single squawk into the database;
-     *
+
      * @param data Map which has the message data in it
      */
     private void insertSquawk(final Map<String, String> data) {
